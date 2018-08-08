@@ -49,7 +49,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>Payments</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -65,7 +65,7 @@
                     <processTypes>
                         <!-- Tell Heroku how to launch your application -->
                         <!-- You might have to remove the ./ in front   -->
-                        <web>java -jar ./target/acapture-msdk-1.0-jar-with-dependencies.jar</web>
+                        <web>java -jar ./target/acapture-msdk-1.0.0-jar-with-dependencies.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>
