@@ -1,14 +1,26 @@
 import static spark.Spark.*;
+
+import spark.ModelAndView;
+import spark.template.mustache.MustacheTemplateEngine;
 import spark.utils.IOUtils;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
 public class Payments {
     public static void main(String[] args) {
         // Assign port.
         port(getHerokuAssignedPort());
+
+        get("/", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("heading", "Acapture Payments API");
+
+            return new ModelAndView(model, "index.mustache"); // resources/templates directory
+        }, new MustacheTemplateEngine());
 
         get("/checkout", (request, response) -> {
             URL url = new URL("https://test.acaptureservices.com/v1/checkouts");

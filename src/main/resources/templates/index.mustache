@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acapture Test Payments API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"/>
+    <style>
+        .content {
+            max-width: 980px;
+        }
+        .align-center{
+            margin: auto;
+        }
+        .text-align-left {
+            text-align: left;
+        }
+        .text-align-center {
+            text-align: center;
+        }
+        .code-style {
+            background-color: #1E1E1E;
+            color: #8EC03F;
+        }
+        .display-block {
+            display: block;
+        }
+        .padding-1 {
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="content align-center text-align-center">
+    <h2>{{heading}}</h2>
+    <p>Following end points are available</p>
+    <code class="code-style text-align-left display-block padding-1">/checkout?amount=10&amp;currency=10</code> <br/>
+    <code class="code-style text-align-left display-block padding-1">/payment-status?resourcePath=/v1/checkouts/{checkoutId}/payment</code>
+    <p>For more information visit: <a href="https://docs.acaptureservices.com/tutorials/integration-guide" target="_blank">Acapture integration guide</a></p>
+</div>
+</body>
+</html>
