@@ -17,13 +17,13 @@ public class Payments {
             conn.setDoInput(true);
             conn.setDoOutput(true);
 
-            String postParams = "authentication.userId=8a829417572279ad015732d66d0327ba&authentication.password=Ena74K3gzS&authentication.entityId=8a829417572279ad015732d66cb427b6";
+            String postParams = "authentication.userId=" + System.getenv().get("AUTHENTICATION_USERID") +
+                    "&authentication.password=" + System.getenv().get("AUTHENTICATION_PASSWORD") +
+                    "&authentication.entityId=" + System.getenv().get("AUTHENTICATION_ENTITY_ID");
 
             for (String key: request.queryParams()) {
                 postParams = postParams.concat("&"+key+"="+request.queryParams(key));
             }
-
-            System.out.print(postParams);
 
             DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
             wr.writeBytes(postParams);
@@ -41,9 +41,9 @@ public class Payments {
 
         get("/payment-status", (request, response) -> {
             URL url = new URL("https://test.acaptureservices.com" + request.queryParams("resourcePath") +
-                    "?authentication.userId=8a829417572279ad015732d66d0327ba" +
-                    "&authentication.password=Ena74K3gzS" +
-                    "&authentication.entityId=8a829417572279ad015732d66cb427b6");
+                    "?authentication.userId=" + System.getenv().get("AUTHENTICATION_USERID") +
+                    "&authentication.password=" + System.getenv().get("AUTHENTICATION_PASSWORD") +
+                    "&authentication.entityId=" + System.getenv().get("AUTHENTICATION_ENTITY_ID"));
 
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
