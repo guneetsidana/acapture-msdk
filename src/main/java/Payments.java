@@ -7,8 +7,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class Payments {
     public static void main(String[] args) {
-        port(getHerokuAssignedPort());
-
         get("/checkout", (request, response) -> {
 
             // Get the checkout Id.
@@ -39,13 +37,22 @@ public class Payments {
 
             return IOUtils.toString(is);
         });
-    }
 
-    static int getHerokuAssignedPort() {
-        ProcessBuilder processBuilder = new ProcessBuilder();
-        if (processBuilder.environment().get("PORT") != null) {
-            return Integer.parseInt(processBuilder.environment().get("PORT"));
-        }
-        return 7070; //return default port if heroku-port isn't set (i.e. on localhost)
+        get("/payment-status", (request, response) -> {
+            URL url = new URL("https://test.acaptureservices.com" + request.queryParams("resourcePath") +
+                    "?authentication.userId=8a829417572279ad015732d66d0327ba" +
+                    "&authentication.password=Ena74K3gzS" +
+                    "&authentication.entityId=8a829417572279ad015732d66cb427b6");
+
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            int responseCode = conn.getResponseCode();
+            InputStream is;
+
+            if (responseCode >= 400) is = conn.getErrorStream();
+            else is = conn.getInputStream();
+
+            return IOUtils.toString(is);
+        });
     }
 }
