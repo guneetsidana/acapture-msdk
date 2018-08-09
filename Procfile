@@ -1,1 +1,1 @@
-web: java -jar target/acapture-msdk-1.0.0.jar
+web: java -jar target/acapture-msdk-1.0.0-jar-with-dependencies.jar

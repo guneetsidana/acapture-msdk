@@ -7,6 +7,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class Payments {
     public static void main(String[] args) {
+        port(getHerokuAssignedPort());
+
         get("/checkout", (request, response) -> {
 
             // Get the checkout Id.
@@ -22,6 +24,8 @@ public class Payments {
                 postParams = postParams.concat("&"+key+"="+request.queryParams(key));
             }
 
+            System.out.print(postParams);
+
             DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
             wr.writeBytes(postParams);
             wr.flush();
@@ -35,5 +39,13 @@ public class Payments {
 
             return IOUtils.toString(is);
         });
+    }
+
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 7070; //return default port if heroku-port isn't set (i.e. on localhost)
     }
 }
