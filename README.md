@@ -9,7 +9,7 @@ AUTHENTICATION_ENTITY_ID="<value>"
 ``` 
 
 Build and run the Payments.java class using IDE eclipse or Intellij Idea. The you can access the application locally
-using https://localhost:<port>
+using https://localhost
 
 
 Any commits pushed to the master branch will automatically deploy and build the application on Heroku server.
