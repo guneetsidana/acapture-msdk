@@ -25,9 +25,9 @@ public class Payments {
         get("/apple-pay", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("heading", "Apple Payments Demo");
-            model.put("transaction_id", request.queryParams('checkout_id'));
+            model.put("transaction_id", request.queryParams("checkout_id"));
 
-            return new ModelAndView(model, "apple-pay.mustache"); // resources/templates directory
+            return new ModelAndView(model, "apple_pay.mustache"); // resources/templates directory
         }, new MustacheTemplateEngine());
 
         get("/checkout", (request, response) -> {
