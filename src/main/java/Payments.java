@@ -22,6 +22,14 @@ public class Payments {
             return new ModelAndView(model, "index.mustache"); // resources/templates directory
         }, new MustacheTemplateEngine());
 
+        get("/apple-pay", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("heading", "Apple Payments Demo");
+            model.put("transaction_id", request.queryParams('checkout_id'));
+
+            return new ModelAndView(model, "apple-pay.mustache"); // resources/templates directory
+        }, new MustacheTemplateEngine());
+
         get("/checkout", (request, response) -> {
             URL url = new URL("https://test.acaptureservices.com/v1/checkouts");
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
