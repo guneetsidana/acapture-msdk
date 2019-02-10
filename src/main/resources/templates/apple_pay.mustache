@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
     <title>Acapture Test Payments API</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"/>
     <style>
@@ -31,8 +32,9 @@
 </head>
 <body>
 <div class="content align-center text-align-center">
+    <script src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId="{{transaction_id}}"></script>
     <h2>{{heading}}</h2>
-    <p>{{transaction_id}}</p>
+    <form action="https://www.facebook.com/" class="paymentWidgets" data-brands="APPLEPAY"></form>
 </div>
 </body>
 </html>
